@@ -5,46 +5,52 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
-public class SVGPicture {
-	private SVGObject[] objects;
+public class SvgPicture 
+{
+	private SvgObject[] objects;
 	private int index;
 	
-	public SVGPicture()
+	public SvgPicture()
 	{
-		objects = new SVGObject[20];
+		objects = new SvgObject[20];
 		index = 0;
 	}
 	
-	public void add(SVGObject object)
+	public void add(SvgObject object)
 	{
-		//check if object is null
+		if(object == null)
+			return;
 		
 		if(index >= objects.length)
 		{
 			//extend the array of objects
 		}
-		objects[index] = object;
-		index++;
+
+		objects[index ++] = object;
 	}
 	
 	public String toString()
 	{
-		String result = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 500\">";
-		for(int i = 0; i<index; i++)
+		String result = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 500 500\"> \n";
+
+		for(int i = 0; i < index; i++)
 		{
-			result += objects[i].toSvgCode();
+			result += objects[i].toSvgCode() + "\n";
 		}
+
 		result += "</svg>";
+
 		return result;
 	}
-	
-	public void saveToFile(String filepath)
+
+	public void saveToFile(String filePath)
 	{
-		try {
-			Files.writeString(Paths.get(filepath),
-					toString(), StandardOpenOption.CREATE_NEW);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		try
+		{
+			Files.writeString(Paths.get(filePath), toString(), StandardOpenOption.CREATE_NEW);
+		}
+		catch(IOException e)
+		{
 			e.printStackTrace();
 		}
 	}

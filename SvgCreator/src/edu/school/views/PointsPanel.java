@@ -13,11 +13,15 @@ import javax.swing.JComponent;
 
 public class PointsPanel extends JComponent{
 	
-	private double[] points = new double[6];
+	public double[] points = new double[1024];
 	private int index = 0;
 	
 	private int movePointX = -1;
 	private int movePointY = -1;
+
+	private int r = 5;
+
+	public boolean canPlace = true;
 	
 	private double distance(double x1, double y1, double x2, double y2)
 	{
@@ -29,7 +33,7 @@ public class PointsPanel extends JComponent{
 		double a = distance(points[0], points[1], points[2], points[3]);
 		double b = distance(points[4], points[5], points[2], points[3]);
 		double c = distance(points[0], points[1], points[4], points[5]);
-		double p = (a+b+c)/2.0;
+		double p = (a + b + c) / 2.0;
 		double S = Math.sqrt((p-a)*(p-b)*(p-c)*p);
 		return S;
 	}
@@ -60,12 +64,25 @@ public class PointsPanel extends JComponent{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(index <points.length)
+
+				if(canPlace)
 				{
-					points[index] = e.getX();
-					points[index+1] = e.getY();
-					index += 2;
-					repaint();
+					if(index < points.length)
+					{
+						if(distance(points[0], points[1], e.getX(), e.getY()) < r)
+						{
+							canPlace = false;
+						}
+						else
+						{
+							points[index] = e.getX();
+							points[index + 1] = e.getY();
+
+							index += 2;
+						}
+
+						repaint();
+					}
 				}
 			}
 
@@ -73,15 +90,16 @@ public class PointsPanel extends JComponent{
 			public void mousePressed(MouseEvent e) {
 				int currentX = e.getX();
 				int currentY = e.getY();
-				for(int i = 0; i<index; i+=2)
+
+				for(int i = 0; i < index; i += 2)
 				{
-					if( points[i]-5 < currentX &&
-							currentX < points[i]+5 &&
-							points[i+1]-5 < currentY &&
-							currentY < points[i+1]+5)
+					if( points[i] - 5 < currentX &&
+							currentX < points[i] + 5 &&
+							points[i + 1] - 5 < currentY &&
+							currentY < points[i + 1] + 5)
 					{
 						movePointX = i;
-						movePointY = i+1;
+						movePointY = i + 1;
 						break;
 					}
 				}
@@ -115,26 +133,30 @@ public class PointsPanel extends JComponent{
 		g2d.setColor(getBackground());
 		g2d.fillRect(getBounds().x, getBounds().y, getBounds().width,
 				getBounds().height);
+
 		if(index > 0)
 		{
-			for(int i = 0; i<index; i+=2)
+			for(int i = 0; i < index; i += 2)
 			{
 				g2d.setColor(Color.RED);
-				Ellipse2D ellipse = new Ellipse2D.Double(points[i]-5, points[i+1]-5, 10, 10);
+				Ellipse2D ellipse = new Ellipse2D.Double(points[i] - 5, points[i + 1] - 5, 10, 10);
 				g2d.draw(ellipse);
 				g2d.fill(ellipse);
 			}
 		}
-		if(index == 6)
+
+		g2d.setColor(Color.BLACK);
+
+		for(int i = 0; i < index - 2; i += 2)
 		{
-			g2d.setColor(Color.BLACK);
-			Line2D line1 = new Line2D.Double(points[0], points[1], points[2], points[3]);
-			Line2D line2 = new Line2D.Double(points[2], points[3], points[4], points[5]);
-			Line2D line3 = new Line2D.Double(points[4], points[5], points[0], points[1]);
-			g2d.draw(line1);
-			g2d.draw(line2);
-			g2d.draw(line3);
-			g2d.drawString(String.format("Area = %.2f", area()), 0, 20);
+			Line2D line = new Line2D.Double(points[i], points[i + 1], points[i + 2], points[i + 3]);
+			g2d.draw(line);	
+		}
+
+		if(!canPlace)
+		{
+			Line2D line = new Line2D.Double(points[index - 2], points[index - 1], points[0], points[1]);
+			g2d.draw(line);
 		}
 	}
 }

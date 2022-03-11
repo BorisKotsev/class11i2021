@@ -2,19 +2,27 @@ package edu.school.tests;
 
 import java.awt.Color;
 
-import edu.school.models.SVGLine;
-import edu.school.models.SVGPicture;
+import edu.school.models.SvgCircle;
+import edu.school.models.SvgEllipse;
+import edu.school.models.SvgLine;
+import edu.school.models.SvgPicture;
+import edu.school.models.SvgPolygon;
+import edu.school.models.SvgRectangle;
 
-public class Test {
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		SvgPicture pic = new SvgPicture();
 
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		SVGPicture pic = new SVGPicture();
-		pic.add(new SVGLine(10, 10, 180, 250, Color.red, 5));
-		pic.add(new SVGLine(280, 10, 0, 368, Color.blue, 1));
-		pic.saveToFile("K:\\test2.svg");
+		pic.add(new SvgLine(10, 10, 180, 250, Color.red, 5));
+		pic.add(new SvgCircle(25, 75, 20, Color.blue, Color.yellow, 5));
+		pic.add(new SvgEllipse(75, 75, 20, 5, Color.green, Color.yellow, 5));
+		pic.add(new SvgRectangle(10, 10, 30, 30, Color.black, Color.black, 5));
+		pic.add(new SvgPolygon(Color.green, Color.red, 5, 50, 160, 55, 180, 70, 180, 60, 190, 65, 205, 50, 195, 35, 205, 40, 190, 30, 180, 45, 180));
+		
+		//System.out.println(pic);
+
+		pic.saveToFile("C:\\Users\\UEFI\\Documents\\test.svg");
 	}
-
-
 }

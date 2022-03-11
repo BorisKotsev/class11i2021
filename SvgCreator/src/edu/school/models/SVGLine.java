@@ -2,60 +2,46 @@ package edu.school.models;
 
 import java.awt.Color;
 
-public class SVGLine extends SVGObject{
-
+public class SvgLine extends SvgObject
+{
 	private int endX;
 	private int endY;
-	private int strokeWidth;
 	
-	public SVGLine(int startX, int startY, int endX, int endY,
-			Color strokeColor, int strokeWidth)
+	public SvgLine(int startX, int startY, int endX, int endY, Color strokeColor, int strokeWidth)
 	{
-		super(startX, startY, strokeColor);
+		super(startX, startY, strokeColor, strokeWidth);
 		setEndX(endX);
 		setEndY(endY);
-		setStrokeWidth(strokeWidth);
 	}
 	
-	
-	public int getEndX() {
+	public int getEndX() 
+	{
 		return endX;
 	}
 
-
-	public void setEndX(int endX) {
+	public void setEndX(int endX) 
+	{
 		this.endX = endX;
 	}
 
-
-	public int getEndY() {
+	public int getEndY()
+	{
 		return endY;
 	}
 
-
-	public void setEndY(int endY) {
+	public void setEndY(int endY) 
+	{
 		this.endY = endY;
 	}
 
-
-	public int getStrokeWidth() {
-		return strokeWidth;
-	}
-
-
-	public void setStrokeWidth(int strokeWidth) {
-		this.strokeWidth = strokeWidth;
-	}
-
-
-	@Override
-	public String toSvgCode() {
+	public String toSvgCode() 
+	{
 		String result = "<line ";
-		result += "x1=\""+getX()+"\" y1=\""+getY()+"\" ";
-		result += "x2=\""+getEndX()+"\" y2=\""+getEndY()+"\" ";
-		result += "stroke=\""+toRGB(getColor())+"\" ";
-		result += "stroke-width=\""+getStrokeWidth()+"\"/>";
+		result += "x1=\"" + getX() + "\" y1=\"" + getY() + "\" ";
+		result += "x2=\"" + getEndX() + "\" y2=\"" + getEndY() + "\" ";
+		result += "stroke=\"" + toRGB(getColor()) + "\" ";
+		result += "stroke-width=\"" + getStrokeWidth() + "\"/>";
+			
 		return result;
 	}
-
 }
