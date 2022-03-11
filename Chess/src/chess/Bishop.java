@@ -1,6 +1,6 @@
-package edu.school.chess;
+package chess;
 
-import edu.school.enums.FigureColor;
+import enums.FigureColor;
 
 public class Bishop extends Figure{
     public Bishop(int row, int col, FigureColor color)

@@ -1,6 +1,6 @@
-package edu.school.chess;
+package chess;
 
-import edu.school.enums.FigureColor;
+import enums.FigureColor;
 
 public class Knight extends Figure {
     
@@ -10,7 +10,6 @@ public class Knight extends Figure {
     }
 
    
-
     @Override
     public void move(Figure[] figures, int destinationRow, int destinationColumn) 
     {

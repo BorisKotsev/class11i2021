@@ -1,10 +1,10 @@
-package edu.school.test;
+package test;
 
-import edu.school.chess.Bishop;
-import edu.school.chess.Figure;
-import edu.school.chess.Knight;
-import edu.school.chess.Rook;
-import edu.school.enums.FigureColor;
+import chess.Bishop;
+import chess.Figure;
+import chess.Knight;
+import chess.Rook;
+import enums.FigureColor;
 
 public class Test {
 

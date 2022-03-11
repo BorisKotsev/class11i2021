@@ -1,6 +1,6 @@
-package edu.school.chess;
+package chess;
 
-import edu.school.enums.FigureColor;
+import enums.FigureColor;
 
 public abstract class Figure {
 	private int row;

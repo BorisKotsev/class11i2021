@@ -1,4 +1,4 @@
-package edu.school.enums;
+package enums;
 
 public enum FigureColor {
 	WHITE,
