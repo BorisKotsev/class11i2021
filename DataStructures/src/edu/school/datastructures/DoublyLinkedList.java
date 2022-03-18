@@ -85,12 +85,24 @@ public class DoublyLinkedList<T> implements List<T>
 		if(index > size() || index < 0)
 			throw new IndexOutOfBoundsException();
 
-		DoublyLinkedNode<T> currNode = new DoublyLinkedNode<T>(element);
-
-		for(int i = 0; i < index; i ++)
-		{
-			
-		}
+			DoublyLinkedNode<T> currentNode = new DoublyLinkedNode<T>(element);
+	
+			while(index > 0)
+			{
+				currentNode = currentNode.getNext();
+				index --;
+			}
+	
+			if(currentNode.getPrev() == null)
+			{
+				currentNode.setPrev(start.getNext());
+			}
+			else
+			{
+				start = new DoublyLinkedNode<T>(element, start, end);
+			}
+	
+			size ++;
 	}
 
 	public void removeAt(int index) 

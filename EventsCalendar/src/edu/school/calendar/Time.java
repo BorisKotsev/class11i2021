@@ -119,6 +119,5 @@ public class Time
         {
             setSecond(getSecond() + 1);
         }
-
     }
 }

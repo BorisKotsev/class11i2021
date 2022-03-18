@@ -1,7 +1,7 @@
 package edu.school.calendar;
 
-public enum DayOfWeek {
-	
+public enum DayOfWeek 
+{
 	MONDAY,
 	TUESDAY,
 	WEDNESDAY,
@@ -9,5 +9,4 @@ public enum DayOfWeek {
 	FRIDAY,
 	SATURDAY,
 	SUNDAY
-
 }

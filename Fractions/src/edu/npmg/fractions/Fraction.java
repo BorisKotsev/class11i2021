@@ -1,7 +1,7 @@
 package edu.npmg.fractions;
 
-public class Fraction {
-
+public class Fraction 
+{
 	private int numerator;
 	private int denominator;
 	
@@ -34,8 +34,7 @@ public class Fraction {
 	
 	public String toString()
 	{
-		return String.format("%d / %d", getNumerator(),
-				getDenominator());
+		return String.format("%d / %d", getNumerator(), getDenominator());
 	}
 	
 	public Fraction(int numerator, int denominator)
@@ -67,15 +66,17 @@ public class Fraction {
 	public void reduce()
 	{
 		int min = getNumerator();
+
 		if(min > getDenominator())
 			min = getDenominator();
-		for(int i = min; i>=2; i--)
+
+		for(int i = min; i >= 2; i --)
 		{
-			if(getNumerator()%i == 0 && 
-					getDenominator()%i == 0)
+			if(getNumerator() % i == 0 && 
+					getDenominator() % i == 0)
 			{
-				setNumerator(getNumerator()/i);
-				setDenominator(getDenominator()/i);
+				setNumerator(getNumerator() / i);
+				setDenominator(getDenominator() / i);
 			}
 		}
  	}
@@ -85,7 +86,7 @@ public class Fraction {
 		Fraction result = 
 				new Fraction(getNumerator(), getDenominator());
 		result.reduce();
+
 		return result;
-	}
-	
+	}	
 }

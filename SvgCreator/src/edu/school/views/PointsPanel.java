@@ -11,7 +11,14 @@ import java.awt.geom.Line2D;
 
 import javax.swing.JComponent;
 
-public class PointsPanel extends JComponent{
+import edu.school.datastructures.Stack;
+import edu.school.models.SvgPicture;
+import edu.school.models.SvgPolygon;
+
+public class PointsPanel extends JComponent
+{	
+	Stack<Integer> undo = new Stack<>();
+	Stack<Integer> redo = new Stack<>();
 	
 	public double[] points = new double[1024];
 	private int index = 0;
@@ -157,6 +164,13 @@ public class PointsPanel extends JComponent{
 		{
 			Line2D line = new Line2D.Double(points[index - 2], points[index - 1], points[0], points[1]);
 			g2d.draw(line);
+			
+			SvgPicture pic = new SvgPicture();
+
+			pic.add(new SvgPolygon(Color.green, Color.red, 5, points));
+			
+			if(false) //Change if you want to save
+				pic.saveToFile("C:\\Users\\Boris\\Documents\\test.svg");
 		}
 	}
 }

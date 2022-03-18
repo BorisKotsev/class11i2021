@@ -12,5 +12,5 @@ public interface List<T>
 
 	boolean isEmpty();
 
-	int size(); //number of elements
+	int size(); 
 }

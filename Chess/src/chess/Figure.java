@@ -2,56 +2,66 @@ package chess;
 
 import enums.FigureColor;
 
-public abstract class Figure {
+public abstract class Figure 
+{
 	private int row;
 	private int column;
 	private FigureColor color;
 	private boolean selected;
 	
-	//to create field isAlreadyMoved
-
-	public void setRow(int row) {
+	public void setRow(int row) 
+	{
 		if (row >= 1 && row <= 8) {
+
 			this.row = row;
 		}
 	}
 
-	public void setColumn(int column) {
-		if (column >= 1 && column <= 8) {
+	public void setColumn(int column) 
+	{
+		if (column >= 1 && column <= 8)
+		{
 			this.column = column;
 		}
 	}
 
-	public void setSelected(boolean selected) {
+	public void setSelected(boolean selected) 
+	{
 		this.selected = selected;
-		// add event to deselect all ther figures on table
 	}
 
-	public int getRow() {
+	public int getRow() 
+	{
 		return row;
 	}
 
-	public int getColumn() {
+	public int getColumn() 
+	{
 		return column;
 	}
 
-	public FigureColor getColor() {
+	public FigureColor getColor() 
+	{
 		return color;
 	}
 
-	public boolean isSelected() {
+	public boolean isSelected() 
+	{
 		return selected;
 	}
 
-	public Figure(int row, int column, FigureColor color) {
+	public Figure(int row, int column, FigureColor color) 
+	{
 		setRow(row);
 		setColumn(column);
 		this.color = color;
 		setSelected(false);
 	}
 
-	protected boolean isDestinationOccupied(Figure[] figures, int destinationRow, int destinationColumn){
-		for(Figure f : figures) {
+	protected boolean isDestinationOccupied(Figure[] figures, int destinationRow, int destinationColumn)
+	{
+		for(Figure f : figures) 
+		{
 			if (f == null)
 				continue;
 
@@ -79,7 +89,8 @@ public abstract class Figure {
         return false;
     }
 
-	public String toString() {
+	public String toString() 
+	{
 		return String.format("Row: %d,Column: %d,Color: %s", getRow(), getColumn(), getColor());
 	}
 	

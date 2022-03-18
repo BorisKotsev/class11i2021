@@ -31,8 +31,6 @@ public class Event
 	
 	public String toString()
 	{
-		return String.format("%s - %s", getDescription(), 
-				getEventsDay());
+		return String.format("%s - %s", getDescription(), getEventsDay());
 	}
-	
 }

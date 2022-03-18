@@ -1,5 +1,6 @@
 package edu.school.tests;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import edu.school.models.SvgPicture;
@@ -20,16 +21,13 @@ public class PointsPanelTest
 		PointsPanel p = new PointsPanel();
 		p.setBounds(10, 10, 200, 200);
 		window.add(p);
-
-		SvgPicture pic = new SvgPicture();
-
-		if(!p.canPlace)
-		{
-			pic.add(new SvgPolygon(Color.green, Color.red, 5, p.points));
-
-			pic.saveToFile("C:\\Users\\Boris\\Documentstest.svg");
-		}
-
-		// DA SE DOBAVI BUTON ZA ZAPAZVANE
+		
+		JButton undo = new JButton("Undo");
+		undo.setBounds(0, 300, 150, 60);
+		window.add(undo);
+		
+		JButton redo = new JButton("Redo");
+		redo.setBounds(150, 300, 150, 60);
+		window.add(redo);
 	}
 }

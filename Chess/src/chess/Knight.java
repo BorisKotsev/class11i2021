@@ -2,21 +2,20 @@ package chess;
 
 import enums.FigureColor;
 
-public class Knight extends Figure {
-    
+public class Knight extends Figure 
+{
     public Knight(int row, int col, FigureColor color)
     {
         super(row, col, color);
     }
-
    
-    @Override
     public void move(Figure[] figures, int destinationRow, int destinationColumn) 
     {
         if(!isSelected())
         {
             return;
         }
+        
         if(destinationRow > 8 || destinationRow < 1 || destinationColumn > 8 || destinationColumn < 1)
         {
             return;
